@@ -1,0 +1,176 @@
+@using LibraryManagement.Models
+@model LibraryManagement.Models.PublicationListViewModel
+
+
+@{
+    ViewData["Title"] = "Publications";
+}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>📚 Publications</h2>
+
+        <a asp-action="Create" class="btn btn-success">
+            + Add Publication
+        </a>
+    </div>
+
+    <form asp-action="Index" method="get" class="row mb-3">
+
+        <div class="col-md-5">
+            <input class="form-control"
+                   type="text"
+                   name="searchQuery"
+                   value="@Model.SearchQuery"
+                   placeholder="Search by Title or Publisher..." />
+        </div>
+
+        <div class="col-md-3">
+            <select class="form-select" name="type">
+
+                <option value="">All Publications</option>
+
+                <option value="Magazine"
+                        selected="@(Model.SelectedType == PublicationType.Magazine)">
+                    Magazines
+                </option>
+
+                <option value="Newspaper"
+                        selected="@(Model.SelectedType == PublicationType.Newspaper)">
+                    Newspapers
+                </option>
+
+            </select>
+        </div>
+
+        <div class="col-md-2">
+            <button class="btn btn-primary w-100">
+                Search
+            </button>
+        </div>
+
+        <div class="col-md-2">
+            <a asp-action="Index"
+               class="btn btn-secondary w-100">
+                Clear
+            </a>
+        </div>
+
+    </form>
+
+    <table class="table table-bordered table-hover">
+
+        <thead class="table-dark">
+
+            <tr>
+
+                <th>Title</th>
+
+                <th>Publisher</th>
+
+                <th>Type</th>
+
+                <th>Date</th>
+
+                <th>Copies</th>
+
+                <th>Actions</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+        @foreach (var item in Model.Publications)
+        {
+            <tr>
+
+                <td>@item.Title</td>
+
+                <td>@item.Publisher</td>
+
+                <td>
+
+                    @if (item.Type == PublicationType.Magazine)
+                    {
+                        <span class="badge bg-success">
+                            Magazine
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-primary">
+                            Newspaper
+                        </span>
+                    }
+
+                </td>
+
+                <td>
+                    @item.PublishedDate.ToShortDateString()
+                </td>
+
+                <td>
+
+                    @item.AvailableCopies /
+                    @item.TotalCopies
+
+                </td>
+
+                <td>
+
+                    <a asp-action="Edit"
+                       asp-route-id="@item.PublicationId"
+                       class="btn btn-warning btn-sm">
+                        Edit
+                    </a>
+
+                    <a asp-action="Details"
+                       asp-route-id="@item.PublicationId"
+                       class="btn btn-info btn-sm">
+                        Details
+                    </a>
+
+                    <a asp-action="Delete"
+                       asp-route-id="@item.PublicationId"
+                       class="btn btn-danger btn-sm">
+                        Delete
+                    </a>
+
+                </td>
+
+            </tr>
+        }
+
+        </tbody>
+
+    </table>
+
+    <nav>
+
+        <ul class="pagination justify-content-center">
+
+            @for (int i = 1; i <= Model.TotalPages; i++)
+            {
+                <li class="page-item @(i==Model.CurrentPage?"active":"")">
+
+                    <a class="page-link"
+                       asp-action="Index"
+                       asp-route-page="@i"
+                       asp-route-searchQuery="@Model.SearchQuery"
+                       asp-route-type="@Model.SelectedType">
+
+                        @i
+
+                    </a>
+
+                </li>
+            }
+
+        </ul>
+
+    </nav>
+
+</div>

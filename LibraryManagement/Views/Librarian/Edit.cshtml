@@ -1,0 +1,46 @@
+@model LibraryManagement.Models.LibrarianModel
+
+@{
+    ViewData["Title"] = "Edit Librarian";
+}
+
+<h2>Edit Librarian</h2>
+
+<form asp-action="Edit">
+
+    <input type="hidden" asp-for="LibrarianId"/>
+
+    <div class="mb-3">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control"/>
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Age"></label>
+        <input asp-for="Age" class="form-control"/>
+        <span asp-validation-for="Age" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Phone"></label>
+        <input asp-for="Phone" class="form-control"/>
+        <span asp-validation-for="Phone" class="text-danger"></span>
+    </div>
+
+    <button class="btn btn-primary">
+        Update
+    </button>
+
+    <a asp-action="Index"
+       class="btn btn-secondary">
+        Cancel
+    </a>
+
+</form>
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

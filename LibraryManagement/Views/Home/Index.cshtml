@@ -1,0 +1,49 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="container mt-5">
+
+    <div class="text-center">
+
+        <h1 class="display-4 fw-bold">
+            Library Management System
+        </h1>
+
+        <p class="lead text-muted mt-3">
+            Welcome to the Library Management System.
+            Manage Books, Students, Librarians and Borrow Records efficiently.
+        </p>
+
+        <div class="mt-4">
+
+            @if (Context.Session.GetString("Username") == null)
+            {
+                <a asp-controller="Login"
+                   asp-action="Index"
+                   class="btn btn-success">
+                    Login
+                </a>
+            }
+            else
+            {
+                <a asp-controller="Dashboard"
+                   asp-action="Index"
+                   class="btn btn-primary">
+                    Go to Dashboard
+                </a>
+            }           
+
+
+
+
+
+
+
+
+
+        </div>
+
+    </div>
+
+</div>

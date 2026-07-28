@@ -1,0 +1,26 @@
+@model LibraryManagement.Models.Book
+
+<h2>Book Details</h2>
+
+<hr/>
+
+<dl class="row">
+
+    <dt class="col-sm-3">Title</dt>
+    <dd class="col-sm-9">@Model.Title</dd>
+
+    <dt class="col-sm-3">Author</dt>
+    <dd class="col-sm-9">@Model.Author</dd>
+
+    <dt class="col-sm-3">ISBN</dt>
+    <dd class="col-sm-9">@Model.ISBN</dd>
+
+    <dt class="col-sm-3">Published</dt>
+    <dd class="col-sm-9">@Model.PublishedDate.ToShortDateString()</dd>
+
+    <dt class="col-sm-3">Available</dt>
+    <dd class="col-sm-9">@Model.AvailableCopies / @Model.TotalCopies</dd>
+
+</dl>
+
+<a asp-action="Index" class="btn btn-secondary">Back</a>

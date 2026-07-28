@@ -1,0 +1,50 @@
+@model LibraryManagement.Models.BorrowViewModel
+
+@{
+    ViewData["Title"] = "Borrow Book";
+}
+
+<h2>Borrow Book</h2>
+
+<form asp-action="Borrow" method="post">
+
+    <input asp-for="BookId" type="hidden"/>
+
+    <div class="mb-3">
+        <label>Book</label>
+        <input asp-for="BookTitle" class="form-control" readonly/>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="BorrowerName"></label>
+        <input asp-for="BorrowerName" class="form-control"/>
+        <span asp-validation-for="BorrowerName" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="BorrowerEmail"></label>
+        <input asp-for="BorrowerEmail" class="form-control"/>
+        <span asp-validation-for="BorrowerEmail" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Phone"></label>
+        <input asp-for="Phone" class="form-control"/>
+        <span asp-validation-for="Phone" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">
+        Borrow
+    </button>
+
+    <a asp-action="Index" class="btn btn-secondary">
+        Cancel
+    </a>
+
+</form>
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

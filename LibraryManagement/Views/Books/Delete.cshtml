@@ -1,0 +1,23 @@
+@model LibraryManagement.Models.Book
+
+<h2>Delete Book</h2>
+
+<h4>Are you sure?</h4>
+
+<hr/>
+
+<p><strong>@Model.Title</strong></p>
+
+<form asp-action="Delete">
+
+    <input type="hidden" asp-for="BookId"/>
+
+    <button class="btn btn-danger">
+        Delete
+    </button>
+
+    <a asp-action="Index" class="btn btn-secondary">
+        Cancel
+    </a>
+
+</form>

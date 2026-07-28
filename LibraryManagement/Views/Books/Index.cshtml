@@ -1,0 +1,266 @@
+@model LibraryManagement.Models.BookListViewModel
+
+@{
+    ViewData["Title"] = "Books";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <h2 class="fw-bold">📚 Books</h2>
+
+    <a asp-action="Create" class="btn btn-primary">
+        + Add Book
+    </a>
+
+</div>
+
+<form asp-action="Index" method="get" class="row g-3 mb-4">
+
+    <div class="col-md-8">
+
+        <input
+            type="text"
+            name="searchQuery"
+            value="@Model.SearchQuery"
+            class="form-control"
+            placeholder="Search by Title, Author or ISBN..." />
+
+    </div>
+
+    <div class="col-md-2">
+
+        <button class="btn btn-success w-100">
+            Search
+        </button>
+
+    </div>
+
+    <div class="col-md-2">
+
+        <a asp-action="Index" class="btn btn-secondary w-100">
+            Clear
+        </a>
+
+    </div>
+
+</form>
+
+<table class="table table-hover table-bordered align-middle">
+
+    <thead class="table-dark">
+
+        <tr>
+
+            <th>Title</th>
+            <th>Author</th>
+            <th>ISBN</th>
+            <th>Published</th>
+            <th>Copies</th>
+            <th>Status</th>
+            <th width="270">Actions</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+@foreach (var item in Model.Books)
+{
+    <tr>
+
+        <td>@item.Title</td>
+
+        <td>@item.Author</td>
+
+        <td>@item.ISBN</td>
+
+        <td>@item.PublishedDate.ToShortDateString()</td>
+
+        <td>
+
+            @item.AvailableCopies / @item.TotalCopies
+
+        </td>
+
+        <td>
+
+            @if (item.AvailableCopies > 0)
+            {
+                <span class="badge bg-success">
+                    Available
+                </span>
+            }
+            else
+            {
+                <span class="badge bg-danger">
+                    Out of Stock
+                </span>
+            }
+
+        </td>
+
+        <td>
+
+            @if (item.AvailableCopies > 0)
+            {
+                <a asp-action="Borrow"
+                   asp-route-id="@item.BookId"
+                   class="btn btn-success btn-sm">
+                    Borrow
+                </a>
+            }
+
+            <a asp-action="Edit"
+               asp-route-id="@item.BookId"
+               class="btn btn-warning btn-sm">
+                Edit
+            </a>
+
+            <a asp-action="Details"
+               asp-route-id="@item.BookId"
+               class="btn btn-info btn-sm">
+                Details
+            </a>
+
+            <a asp-action="Delete"
+               asp-route-id="@item.BookId"
+               class="btn btn-danger btn-sm">
+                Delete
+            </a>
+
+        </td>
+
+    </tr>
+}
+
+    </tbody>
+
+</table>
+
+@if (Model.TotalPages > 1)
+{
+    <nav>
+
+        <ul class="pagination justify-content-center">
+
+            @for (int i = 1; i <= Model.TotalPages; i++)
+            {
+                <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+
+                    <a class="page-link"
+                       asp-action="Index"
+                       asp-route-page="@i"
+                       asp-route-searchQuery="@Model.SearchQuery">
+
+                        @i
+
+                    </a>
+
+                </li>
+            }
+
+        </ul>
+
+    </nav>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <h2>Books</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Add Book</a>
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>ISBN</th>
+            <th>Published Date</th>
+            <th>Available Copies</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+@foreach (var item in Model.Books)
+{
+        <tr>
+            <td>@item.Title</td>
+            <td>@item.Author</td>
+            <td>@item.ISBN</td>
+            <td>@item.PublishedDate.ToShortDateString()</td>
+            <td>@item.AvailableCopies / @item.TotalCopies</td>
+            <td>
+                @if (item.AvailableCopies>0)
+                {
+                    <a asp-controller="Books"
+                        asp-action="Borrow"
+                       asp-route-id="@item.BookId"
+                       class="btn btn-success btn-sm">
+                        Borrow
+                    </a>
+                }
+                else
+                {
+                    <span class="badge bg-danger">Out of Stock</span>
+                }
+            
+                <a asp-action="Edit"
+                   asp-route-id="@item.BookId"
+                   class="btn btn-warning btn-sm">
+                    Edit
+                </a>
+            
+                <a asp-action="Details"
+                   asp-route-id="@item.BookId"
+                   class="btn btn-info btn-sm">
+                    Details
+                </a>
+            
+                <a asp-action="Delete"
+                   asp-route-id="@item.BookId"
+                   class="btn btn-danger btn-sm">
+                    Delete
+                </a>
+            </td>
+
+
+
+            
+        </tr>
+}
+    </tbody>
+</table> -->

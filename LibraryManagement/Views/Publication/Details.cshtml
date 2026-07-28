@@ -1,0 +1,114 @@
+@model LibraryManagement.Models.Publication
+
+@{
+    ViewData["Title"] = "Publication Details";
+}
+
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-primary text-white">
+            <h3>Publication Details</h3>
+        </div>
+
+        <div class="card-body">
+
+            <dl class="row">
+
+                <dt class="col-sm-4">
+                    Title
+                </dt>
+
+                <dd class="col-sm-8">
+                    @Model.Title
+                </dd>
+
+                <dt class="col-sm-4">
+                    Publisher
+                </dt>
+
+                <dd class="col-sm-8">
+                    @Model.Publisher
+                </dd>
+
+                <dt class="col-sm-4">
+                    Publication Type
+                </dt>
+
+                <dd class="col-sm-8">
+
+                    @if (Model.Type == PublicationType.Magazine)
+                    {
+                        <span class="badge bg-success">
+                            Magazine
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-primary">
+                            Newspaper
+                        </span>
+                    }
+
+                </dd>
+
+                <dt class="col-sm-4">
+                    Published Date
+                </dt>
+
+                <dd class="col-sm-8">
+                    @Model.PublishedDate.ToShortDateString()
+                </dd>
+
+                <dt class="col-sm-4">
+                    Total Copies
+                </dt>
+
+                <dd class="col-sm-8">
+                    @Model.TotalCopies
+                </dd>
+
+                <dt class="col-sm-4">
+                    Available Copies
+                </dt>
+
+                <dd class="col-sm-8">
+
+                    @if (Model.AvailableCopies > 0)
+                    {
+                        <span class="badge bg-success">
+                            @Model.AvailableCopies Available
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-danger">
+                            Out of Stock
+                        </span>
+                    }
+
+                </dd>
+
+            </dl>
+
+        </div>
+
+        <div class="card-footer">
+
+            <a asp-action="Edit"
+               asp-route-id="@Model.PublicationId"
+               class="btn btn-warning">
+                Edit
+            </a>
+
+            <a asp-action="Index"
+               class="btn btn-secondary">
+                Back to List
+            </a>
+
+        </div>
+
+    </div>
+
+</div>

@@ -228,32 +228,33 @@ Detailed documentation is available inside the **docs/** folder.
 ## 📸 Application Preview
 
 ### 🔐 Login
-![Login Page](docs/images/login.png)
+![Login Page](docs/images/Login.png)
 
 ---
 
 ### 📊 Dashboard
-![Dashboard](docs/images/dashboard.png)
+![Dashboard](docs/images/Dashboard.png)
+![Dashboard](docs/images/Dashboard1.png)
 
 ---
 
 ### 📚 Books
-![Books](docs/images/books.png)
+![Books](docs/images/Books.png)
 
 ---
 
 ### 👨‍🎓 Students
-![Students](docs/images/students.png)
+![Students](docs/images/Students.png)
 
 ---
 
 ### 👩‍💼 Librarians
-![Librarians](docs/images/librarians.png)
+![Librarians](docs/images/Librarians.png)
 
 ---
 
 ### 📰 Publications
-![Publications](docs/images/publications.png)
+![Publications](docs/images/Publications.png)
 
 ---
 

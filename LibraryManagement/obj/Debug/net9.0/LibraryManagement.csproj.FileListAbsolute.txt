@@ -313,3 +313,4 @@
 /Users/arya/LibraryManagementSystem/LibraryManagement/bin/Debug/net9.0/tr/Microsoft.CodeAnalysis.Scripting.resources.dll
 /Users/arya/LibraryManagementSystem/LibraryManagement/bin/Debug/net9.0/zh-Hans/Microsoft.CodeAnalysis.Scripting.resources.dll
 /Users/arya/LibraryManagementSystem/LibraryManagement/bin/Debug/net9.0/zh-Hant/Microsoft.CodeAnalysis.Scripting.resources.dll
+/Users/arya/LibraryManagementSystem/LibraryManagement/obj/Debug/net9.0/LibraryManagement.sourcelink.json
